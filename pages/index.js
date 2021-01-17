@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 
 function getIsLandscape() {
   const width = window.innerWidth;
@@ -11,6 +11,8 @@ function getIsLandscape() {
 
 export default function Home() {
   const [isLandscape, setIsLandscape] = useState(false);
+
+  useEffect(() => setIsLandscape(getIsLandscape), []);
 
   useLayoutEffect(() => {
     function onWindowResize() {
@@ -41,8 +43,6 @@ export default function Home() {
           <h1>Please turn your phone sideways</h1>
         )}
       </main>
-
-      <footer className={styles.footer}></footer>
     </div>
   );
 }
